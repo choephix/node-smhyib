@@ -114,6 +114,26 @@ export function getClosestElementsAroundTimestamp<T extends SomethingWithTimesta
   return [leftElement, rightElement, interpolationPoint];
 }
 
+/**
+ * Give this function some incomplete telemetry array, a time range and a period in milliseconds,
+ * and it will return to you an array of objects with "last_remote_timestamp" at equal intervals
+ * within the range, and with all numeric properties (unless explicitly excluded) interpolated
+ * from the true data.
+ * 
+ * Will also properly handle out-of-range parameters, 
+ * by just returning values equal to the first or last element.
+ * 
+ * @param rawTelemetryData - Any true data that we have from the db
+ * @param fromMs - Start of range
+ * @param toMs - End of range
+ * @param periodMs - Density of returned elements
+ * @param excludeProperties - These properties will not be interpolated, 
+ * and instead you'll ideally get the values from the closest true element on the left,
+ * unless there aren't any, in which case you'll get the values from the first true element.
+ * 
+ * @returns A new array of elements at equal intervals (periodMs) with values interpolated from
+ * the closest true data.
+ */
 export function generateInterpolatedElementsFromIncompleteData<T extends SomethingWithTimestamp>(
   rawTelemetryData: T[],
   fromMs: number,
@@ -126,12 +146,12 @@ export function generateInterpolatedElementsFromIncompleteData<T extends Somethi
   //// We need to loop through each period between the fromMs and toMs timestamps
   //// and find the two elements that are closest to the current period's timestamp
   //// and then interpolate between them
-  for (let currentMs = fromMs; currentMs <= toMs; currentMs += period) {
+  for (let currentMs = fromMs; currentMs <= toMs; currentMs += periodMs) {
     //// Get the two elements that are closest to the current period's timestamp
     //// and then interpolate between them
     const [leftElement, rightElement, interpolationPoint] = getClosestElementsAroundTimestamp(
       rawTelemetryData,
-      currentMs,
+      currentMs
     );
 
     //// Interpolate between the two elements and assign the result to the result array
@@ -139,7 +159,7 @@ export function generateInterpolatedElementsFromIncompleteData<T extends Somethi
       leftElement,
       rightElement,
       interpolationPoint,
-      excludeProperties,
+      excludeProperties
     );
     result.push(interpolatedElement);
   }
