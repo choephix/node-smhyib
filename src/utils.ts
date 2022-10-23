@@ -138,7 +138,7 @@ export function generateInterpolatedElementsFromIncompleteData<T extends Somethi
   rawTelemetryData: T[],
   fromMs: number,
   toMs: number,
-  period: number,
+  periodMs: number,
   excludeProperties: (keyof T)[] = [],
 ): T[] {
   const result: T[] = [];
