@@ -1,8 +1,5 @@
-// import fs from 'fs';
-// import { generateInterpolatedElementsFromIncompleteData } from './utils';
-
-const fs = require('fs');
-const { generateInterpolatedElementsFromIncompleteData } = require('./utils');
+import fs from 'fs';
+import { generateInterpolatedElementsFromIncompleteData } from './utils';
 
 const [, , rawTelemetryJsonFilePath, fromMsString, toMsString, periodString] = process.argv;
 
