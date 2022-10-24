@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "a": "ts-node src/index.ts ./mockdata/raw-telemetry.json 343400 345400 30",
-    "b": "ts-node src/index.ts ./mockdata/simple.json 1800 2800 30"
+    "a": "ts-node src/index.ts ./mockdata/raw-telemetry.json ",
+    "b": "ts-node src/index.ts ./mockdata/simple.json"
   },
   "keywords": [],
   "author": "",
