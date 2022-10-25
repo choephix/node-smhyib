@@ -1,6 +1,6 @@
 import { lenVec3 } from "./helpers";
 
-export function mapRawTelemetryFrameToEventFrameUserValues(
+export function mapTelemetryDataToEventFrameUserValues(
   frame: any
 ) {
   return {
@@ -19,7 +19,7 @@ export function mapRawTelemetryFrameToEventFrameUserValues(
   }
 }
 
-export function mapRawTelemetryFrameToTelemetryFrameUserValues(
+export function mapTelemetryDataToTelemetryFrameUserValues(
   frame: any
 ) {
   const vel_x_kmh = frame.vel_x * 3.6;
@@ -53,23 +53,24 @@ export function mapRawTelemetryFrameToTelemetryFrameUserValues(
   };
 }
 
-export function mapRawTelemetryFrameToMockApiTimelineSnapshot(
+export function mapTelemetryDataToMockApiTimelineSnapshot(
   frame: any
 ) {
   const { vel_z, vel_y, vel_x,
     steer_angle, rot_z, rot_y, rot_x, pos_z, pos_y, pos_x, normalized_position,
     gear, gas, engine_rpm, } = frame;
   return {
-    "rpm": engine_rpm,
-    "speed": lenVec3(vel_x, vel_y, vel_z),
-    "throttle": gas,
-    "brake": 0,
-    "steer": steer_angle,
-    "gear": gear,
-    "position": [pos_x, pos_y, pos_z],
-    "rotation": [rot_x, rot_y, rot_z],
-    "velocity": [vel_x, vel_y, vel_z,],
-    "tractionControl": true,
-    "abs": true
+    rpm: engine_rpm,
+    speed: lenVec3(vel_x, vel_y, vel_z),
+    throttle: gas,
+    brake: 0,
+    steer: steer_angle,
+    gear: gear,
+    position: [pos_x, pos_y, pos_z],
+    rotation: [rot_x, rot_y, rot_z],
+    velocity: [vel_x, vel_y, vel_z,],
+    normalized_position,
+    tractionControl: true,
+    abs: true
   };
 }

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "a": "ts-node src/index.ts ./mockdata/raw-telemetry.json ",
+    "a": "ts-node src/index.ts ./mockdata/true4.json,./mockdata/true3.json,./mockdata/true2a.json,./mockdata/true2b.json",
     "b": "ts-node src/index.ts ./mockdata/simple.json"
   },
   "keywords": [],
