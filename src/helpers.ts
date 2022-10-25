@@ -22,3 +22,20 @@ export function shiftAllDataToStartFromZeroTimestamp<T extends SomethingWithTime
 
   return array;
 }
+
+export function groupBy<T, K extends string & keyof T>(xs: T[], key: K) {
+  return xs.reduce(function (rv: any, x) {
+    const group = (rv[x[key]] = rv[x[key]] || []);
+    group.push(x);
+    return rv;
+  }, {} as { [key: string]: T[] });
+};
+
+/** Returns the length of a 3D vector */
+export function lenVec3(x: number, y: number, z: number) {
+  return Math.sqrt(x * x + y * y + z * z);
+};
+
+export function lerp(a: number, b: number, t: number) {
+  return a + (b - a) * t;
+}
