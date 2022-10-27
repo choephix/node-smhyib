@@ -56,10 +56,11 @@ export function mapTelemetryDataToTelemetryFrameUserValues(
 export function mapTelemetryDataToMockApiTimelineSnapshot(
   frame: any
 ) {
-  const { vel_z, vel_y, vel_x,
+  const { vel_z, vel_y, vel_x, user_id,
     steer_angle, rot_z, rot_y, rot_x, pos_z, pos_y, pos_x, normalized_position,
     gear, gas, engine_rpm, } = frame;
   return {
+    userID: user_id,
     rpm: engine_rpm,
     speed: lenVec3(vel_x, vel_y, vel_z),
     throttle: gas,
