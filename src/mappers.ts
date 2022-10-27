@@ -11,9 +11,9 @@ export function mapTelemetryDataToEventFrameUserValues(
       z: frame.pos_z,
     },
     carRotationDegrees: {
-      x: frame.rot_x,
-      y: frame.rot_z,
-      z: frame.rot_y,
+      y: -frame.rot_z,
+      x: -frame.rot_x,
+      z: -frame.rot_y,
     },
     lapProgressPercentage01Notation: 0
   }
@@ -67,7 +67,7 @@ export function mapTelemetryDataToMockApiTimelineSnapshot(
     steer: steer_angle,
     gear: gear,
     position: [pos_x, pos_y, pos_z],
-    rotation: [rot_x, rot_y, rot_z],
+    rotation: [-rot_z, -rot_x, -rot_y],
     velocity: [vel_x, vel_y, vel_z,],
     normalized_position,
     tractionControl: true,
